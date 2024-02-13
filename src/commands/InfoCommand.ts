@@ -17,11 +17,11 @@ export default class InfoCommand implements Command {
             .setDescription(`*Running ${client.user!.username} v${version}*\nThis bot is under active development.`)
             .setTimestamp()
             .addFields(
-                { name: 'Developer', value: 'Dynmie#1173', inline: true, },
+                { name: 'Developer', value: 'Dynmie', inline: true, },
                 { name: 'Tag', value: client.user!.tag, inline: true, },
                 { name: 'Language', value: 'JavaScript', inline: true, },
                 { name: 'Servers', value: `Total servers: ${client.guilds.cache.size}`, inline: true, },
-                { name: 'Invite', value: 'Contact Dynmie#1173', inline: true, },
+                { name: 'Invite', value: 'Contact dynmie for an invite', inline: true, },
             )
             .setFooter({ text: client.user!.username, iconURL: `https://cdn.discordapp.com/avatars/${client.user!.id}/${client.user!.avatar}.png?size=64`, })
             .setColor('Blue')
