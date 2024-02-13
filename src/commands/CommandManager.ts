@@ -7,7 +7,7 @@ import PingCommand from "./PingCommand";
 
 export default class CommandManager {
 
-    constructor(private _app: App) {}
+    constructor(private _app: App) { }
 
     private toAdd: Command[] = [
         new OsuCommand(this._app),
@@ -15,7 +15,9 @@ export default class CommandManager {
         new InfoCommand(),
     ];
 
-    commands: Map<string, Command> = new Map<string, Command>(this.toAdd.map(command => [command.commandInfo.name, command]));
+    commands: Map<string, Command> = new Map<string, Command>(
+        this.toAdd.map(command => [command.commandInfo.name, command])
+    );
 
     async execute(interaction: ChatInputCommandInteraction): Promise<void> {
         const command = this.commands.get(interaction.commandName);
@@ -29,4 +31,5 @@ export default class CommandManager {
 
         await command.execute(interaction);
     }
+
 }

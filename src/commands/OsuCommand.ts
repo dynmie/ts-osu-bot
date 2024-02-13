@@ -94,11 +94,11 @@ export default class OsuCommand implements Command {
                                         .setURL(`https://osu.ppy.sh/users/${user.id || 2}`)
                                         .setEmoji({ id: '1023464297331957840', animated: false, })
                                         .setStyle(ButtonStyle.Link)
-                                )
+                                );
 
-                            await interaction.editReply({ embeds: [embed], components: [actionRow], }).catch(console.error)
+                            await interaction.editReply({ embeds: [embed], components: [actionRow], });
                         }).catch(async () => {
-                            await interaction.editReply({ content: ':x: That player was not found.' }).catch(console.error)
+                            await interaction.editReply({ content: ':x: That player was not found.' });
                         })
                         break
                     }
@@ -115,7 +115,7 @@ export default class OsuCommand implements Command {
                         const beatmaps = await osuApi.getBeatmaps({ b: mapId }).catch(() => null);
 
                         if (beatmaps == null) {
-                            await interaction.editReply({ content: ':x: No beatmap with that id was found.', }).catch(console.error);
+                            await interaction.editReply({ content: ':x: No beatmap with that id was found.', });
                             return;
                         }
                         const beatmap = beatmaps[0];
@@ -144,7 +144,7 @@ export default class OsuCommand implements Command {
                                     .setStyle(ButtonStyle.Link)
                             )
 
-                        await interaction.editReply({ embeds: [embed], components: [actionRow], }).catch(console.error)
+                        await interaction.editReply({ embeds: [embed], components: [actionRow], });
                         break
                     }
                 }
