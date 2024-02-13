@@ -1,0 +1,25 @@
+{
+    "name": "yukino",
+    "version": "1.0.0",
+    "description": "A cool bot to do cool things.",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "nodemon out/src/index.js",
+        "depcom": "node out/src/deploy-commands.js",
+        "start": "node out/src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "g"
+    },
+    "author": "dynmie",
+    "dependencies": {
+        "discord.js": "^14.14.1",
+        "node-osu": "^2.2.1",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.24.0",
+        "nodemon": "^2.0.20"
+    }
+}
