@@ -21,7 +21,7 @@ export default class App {
         return this._client;
     }
 
-    _osuApi = new OsuApi(osuKey, {
+    private _osuApi = new OsuApi(osuKey, {
         notFoundAsError: true,
         completeScores: false,
         parseNumeric: false,

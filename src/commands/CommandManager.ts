@@ -7,10 +7,10 @@ import PingCommand from "./PingCommand";
 
 export default class CommandManager {
 
-    constructor(private app: App) {}
+    constructor(private _app: App) {}
 
     private toAdd: Command[] = [
-        new OsuCommand(this.app),
+        new OsuCommand(this._app),
         new PingCommand(),
         new InfoCommand(),
     ];
