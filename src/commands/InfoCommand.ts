@@ -1,12 +1,12 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, RESTPostAPIChatInputApplicationCommandsJSONBody, EmbedBuilder } from 'discord.js';
 import Command from './Command';
-import { version } from '../../config.json';
+import { version } from '@config';
 
 export default class InfoCommand implements Command {
 
-    commandInfo: RESTPostAPIChatInputApplicationCommandsJSONBody = new SlashCommandBuilder()
+    readonly commandInfo: RESTPostAPIChatInputApplicationCommandsJSONBody = new SlashCommandBuilder()
         .setName('info')
-        .setDescription('Replies with information about this bot.')
+        .setDescription('Replies with information about this bot')
         .toJSON();
 
     async execute(interaction: ChatInputCommandInteraction<CacheType>): Promise<void> {
