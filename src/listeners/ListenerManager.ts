@@ -1,7 +1,7 @@
 import { ActivityType, ChatInputCommandInteraction, EmbedBuilder, InteractionType } from "discord.js";
 import App from "../App";
 
-export class ListenerManager {
+export default class ListenerManager {
     constructor(private _app: App) { }
 
     register() {

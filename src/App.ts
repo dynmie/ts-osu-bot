@@ -2,7 +2,7 @@ import { Client } from "discord.js";
 import { Api as OsuApi } from "node-osu";
 import { osuKey, token } from "../config.json";
 import CommandManager from "./commands/CommandManager";
-import { ListenerManager } from "./listeners/ListenerManager";
+import ListenerManager from "./listeners/ListenerManager";
 
 export default class App {
 
