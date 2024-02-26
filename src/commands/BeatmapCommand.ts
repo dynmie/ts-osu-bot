@@ -1,10 +1,11 @@
-import App from "src/App";
 import Command from "./Command";
 import { RESTPostAPIChatInputApplicationCommandsJSONBody, ChatInputCommandInteraction, CacheType, SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder } from "discord.js";
+import { Api as OsuApi } from "node-osu";
+import { sanitize } from "@utils/message-utils";
 
 export default class BeatmapCommand implements Command {
 
-    constructor(private _app: App) { }
+    constructor(private _osuApi: OsuApi) { }
 
     readonly commandInfo: RESTPostAPIChatInputApplicationCommandsJSONBody = new SlashCommandBuilder()
         .setName("beatmap")
@@ -16,13 +17,12 @@ export default class BeatmapCommand implements Command {
         .toJSON();
 
     async execute(interaction: ChatInputCommandInteraction<CacheType>): Promise<void> {
-        const osuApi = this._app.osuApi;
-        const client = this._app.client;
+        const client = interaction.client;
 
-        const mapId = interaction.options.getString('id')!
-        await interaction.deferReply().catch(console.error)
-        const beatmaps = await osuApi.getBeatmaps({ b: mapId }).catch(() => null);
+        const mapId = interaction.options.getString('id')!;
+        await interaction.deferReply().catch(console.error);
 
+        const beatmaps = await this._osuApi.getBeatmaps({ b: mapId }).catch(() => null);
         if (beatmaps == null) {
             await interaction.editReply({ content: ':x: No beatmap with that id was found.', });
             return;
@@ -42,7 +42,7 @@ export default class BeatmapCommand implements Command {
                 { name: 'Song', value: `Length: ${beatmap.length.total || 0}s\nBPM: ${beatmap.bpm || 'Unknown'}`, inline: true, },
                 { name: 'Map', value: `Mode: ${beatmap.mode || 'Unknown'}\nCircles: ${beatmap.objects.normal || 'Unknown'}\nSliders: ${beatmap.objects.slider || 'Unknown'}\nSpinners: ${beatmap.objects.spinner || 'Unknown'}`, inline: true, },
                 { name: 'More Info', value: `Map ID: ${beatmap.id || 'Unknown'}\nSet ID: ${beatmap.beatmapSetId || 'Unknown'}`, inline: true, },
-            )
+            );
 
         const actionRow = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(
@@ -51,14 +51,10 @@ export default class BeatmapCommand implements Command {
                     .setURL(`https://osu.ppy.sh/beatmapsets/${beatmap.beatmapSetId}#osu/${beatmap.id}`)
                     .setEmoji({ id: '1023464297331957840', animated: false, })
                     .setStyle(ButtonStyle.Link)
-            )
+            );
 
         await interaction.editReply({ embeds: [embed], components: [actionRow], });
 
     }
 
-}
-
-function sanitize(title: string) {
-    throw new Error("Function not implemented.");
 }

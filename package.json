@@ -5,7 +5,7 @@
     "main": "src/index.js",
     "scripts": {
         "build": "tsc && tsc-alias",
-        "test": "nodemon out/src/index.js",
+        "dev": "nodemon out/src/index.js",
         "depcom": "node out/src/deploy-commands.js",
         "start": "node out/src/index.js"
     },

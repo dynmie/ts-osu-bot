@@ -1,10 +1,11 @@
 import App from "src/App";
 import Command from "./Command";
 import { RESTPostAPIChatInputApplicationCommandsJSONBody, ChatInputCommandInteraction, CacheType, SlashCommandBuilder } from "discord.js";
+import { Api as OsuApi } from "node-osu";
 
 export default class RankCommand implements Command {
 
-    constructor(private _app: App) { }
+    constructor(private _osuApi: OsuApi) { }
 
     readonly commandInfo: RESTPostAPIChatInputApplicationCommandsJSONBody = new SlashCommandBuilder()
         .setName('rank')
@@ -16,13 +17,11 @@ export default class RankCommand implements Command {
         .toJSON();
 
     async execute(interaction: ChatInputCommandInteraction<CacheType>): Promise<void> {
-        const osuApi = this._app.osuApi;
-
         const playerName = interaction.options.getString('player')!;
 
         await interaction.deferReply();
 
-        const player = await osuApi.getUser({ u: playerName }).catch(() => null);
+        const player = await this._osuApi.getUser({ u: playerName }).catch(() => null);
         if (player == null) {
             await interaction.editReply({ content: ':x: That player was not found.' });
             return;

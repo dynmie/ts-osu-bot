@@ -13,10 +13,10 @@ export default class CommandManager {
     constructor(private _app: App) { }
 
     private toAdd: Command[] = [
-        new AccuracyCommand(this._app),
-        new ProfileCommand(this._app),
-        new BeatmapCommand(this._app),
-        new RankCommand(this._app),
+        new AccuracyCommand(this._app.osuApi),
+        new ProfileCommand(this._app.osuApi),
+        new BeatmapCommand(this._app.osuApi),
+        new RankCommand(this._app.osuApi),
         new PingCommand(),
         new InfoCommand(),
     ];
