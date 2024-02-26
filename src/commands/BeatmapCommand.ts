@@ -23,7 +23,7 @@ export default class BeatmapCommand implements Command {
         await interaction.deferReply().catch(console.error);
 
         const beatmaps = await this._osuApi.getBeatmaps({ b: mapId }).catch(() => null);
-        if (beatmaps == null) {
+        if (beatmaps == null || beatmaps.length == 0) {
             await interaction.editReply({ content: ':x: No beatmap with that id was found.', });
             return;
         }
