@@ -25,7 +25,7 @@ export default class InfoCommand implements Command {
             )
             .setFooter({ text: client.user!.username, iconURL: `https://cdn.discordapp.com/avatars/${client.user!.id}/${client.user!.avatar}.png?size=64`, })
             .setColor('Blue')
-            .toJSON()
+            .toJSON();
 
         await interaction.reply({ embeds: [embed] }).catch(console.error);
     }

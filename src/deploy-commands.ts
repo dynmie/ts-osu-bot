@@ -7,12 +7,12 @@ const commands = app.commandManager.commands;
 
 const rest = new REST({ version: '10' }).setToken(token);
 
-const cmds = [...commands.values()].map(command => command.commandInfo)
+const cmds = [...commands.values()].map(command => command.commandInfo);
 
 function deployCommands() {
     rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: cmds })
         .then(data => console.log(`Registered ${data} commands.`))
-        .catch(console.error)
+        .catch(console.error);
 }
 
-deployCommands()
+deployCommands();

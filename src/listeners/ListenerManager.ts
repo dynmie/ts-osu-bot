@@ -12,7 +12,7 @@ export default class ListenerManager {
             client.user.setStatus('online');
 
             console.log(`Now ready with the user ${client.user.tag}.`);
-        })
+        });
 
         client.on('interactionCreate', async interaction => {
             switch (interaction.type) {
@@ -22,7 +22,7 @@ export default class ListenerManager {
                     break;
                 }
             }
-        })
+        });
 
         client.on('messageCreate', async message => {
             if (message.author.bot) return;
@@ -43,6 +43,6 @@ export default class ListenerManager {
                     },
                 });
             }
-        })
+        });
     }
 }

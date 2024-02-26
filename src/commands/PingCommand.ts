@@ -10,7 +10,7 @@ export default class PingCommand implements Command {
 
     async execute(interaction: ChatInputCommandInteraction<CacheType>): Promise<void> {
         const client = interaction.client;
-        await interaction.reply(`:ping_pong: Pong! Latency is \`${Date.now() - interaction.createdTimestamp}ms\`. Discord API latency is \`${client.ws.ping}ms\`.`)
+        await interaction.reply(`:ping_pong: Pong! Latency is \`${Date.now() - interaction.createdTimestamp}ms\`. Discord API latency is \`${client.ws.ping}ms\`.`);
     }
 
 }

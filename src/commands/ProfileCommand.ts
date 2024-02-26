@@ -1,4 +1,3 @@
-import App from "src/App";
 import Command from "./Command";
 import { RESTPostAPIChatInputApplicationCommandsJSONBody, ChatInputCommandInteraction, CacheType, SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder } from "discord.js";
 import { sanitize } from "@utils/message-utils";
@@ -50,7 +49,7 @@ export default class ProfileCommand implements Command {
                 { name: 'Accuracy', value: Math.round((user.accuracy || 0) * 100) / 100 + '%', inline: true },
                 { name: 'Score', value: `Ranked: ${user.scores.ranked || 0}\nTotal: ${user.scores.total || 0}`, inline: true },
                 { name: 'More Info', value: `ID: ${user.id}`, inline: true },
-            )
+            );
 
         const actionRow = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(
