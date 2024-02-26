@@ -20,11 +20,13 @@ export default class AccuracyCommand implements Command {
 
         await interaction.deferReply().catch(console.error);
 
-        await this._osuApi.getUser({ u: player }).then(async user => {
-            await interaction.editReply({ content: `:dart: ${user.name}'s accuracy is \`${Math.round((user.accuracy || 0) * 100) / 100}%\`.` }).catch(console.error)
-        }).catch(async () => {
-            interaction.editReply({ content: ':x: That player was not found.' }).catch(console.error)
-        })
+        const user = await this._osuApi.getUser({ u: player }).catch(() => null);
+        if (user == null) {
+            await interaction.editReply({ content: ':x: That player was not found.' });
+            return;
+        }
+
+        await interaction.editReply({ content: `:dart: ${user.name}'s accuracy is \`${Math.round((user.accuracy || 0) * 100) / 100}%\`.` });
     }
 
 }
